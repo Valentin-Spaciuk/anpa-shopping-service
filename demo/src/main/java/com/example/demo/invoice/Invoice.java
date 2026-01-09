@@ -8,6 +8,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "invoices")
@@ -37,4 +39,12 @@ public class Invoice {
     @NotBlank
     @Column(nullable = false)
     private String status;
+
+    @NotNull
+    @Column(nullable = false)
+    private Long customerId;
+
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<InvoiceItem> items = new ArrayList<>();
 }

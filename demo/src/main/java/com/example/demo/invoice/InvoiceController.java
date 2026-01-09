@@ -1,6 +1,8 @@
 package com.example.demo.invoice;
 
 import com.example.demo.invoice.dto.InvoiceCreateRequest;
+import com.example.demo.invoice.dto.InvoiceDetailsResponse;
+import com.example.demo.invoice.dto.InvoiceResponse;
 import com.example.demo.invoice.dto.InvoiceUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -19,13 +21,13 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public List<Invoice> getAll() {
+    public List<InvoiceResponse> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Invoice getById(@PathVariable Long id) {
-        return service.findById(id);
+    public InvoiceDetailsResponse getById(@PathVariable Long id) {
+        return service.findDetailsById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
